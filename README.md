@@ -11,4 +11,6 @@ kubectl apply -f create-pv-pvc.yaml
 
 helm install prometheus prometheus-community/kube-prometheus-stack --values values.yaml -n monitoring
 
-# kube-prometheus-stack
+- default user/pass
+- 
+admin/prom-operator
