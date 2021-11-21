@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: alertmanager
+  namespace: monitoring
+  labels:
+    type: nfs
+    app: alertmanager
+spec:
+  storageClassName: managed-nfs
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: nfs-server.k8s.local
+    path: "/nfs/alertmanager-stage"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    type: nfs
+    app: prometheus
+spec:
+  storageClassName: managed-nfs
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: nfs-server.k8s.local
+    path: "/nfs/prometheus-stage"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: alertmanager
+  name: alertmanager-prometheus-kube-prometheus-alertmanager-db-alertmanager-prometheus-kube-prometheus-alertmanager-0
+  namespace: monitoring
+spec:
+  storageClassName: "managed-nfs"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: prometheus
+  name: prometheus-prometheus-kube-prometheus-prometheus-db-prometheus-prometheus-kube-prometheus-prometheus-0
+  namespace: monitoring
+spec:
+  storageClassName: "managed-nfs"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+

@@ -1,0 +1,41 @@
+# Define persistent storage for Prometheus (PVC)
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteMany"]
+          storageClassName: managed-nfs
+          resources:
+            requests:
+              storage: 2Gi
+
+# Define persistent storage for Alertmanager (PVC)
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteMany"]
+          storageClassName: managed-nfs
+          resources:
+            requests:
+              storage: 2Gi
+
+# Change default node-exporter port
+prometheus-node-exporter:
+  service:
+    port: 30206
+    targetPort: 30206
+
+# Disable Etcd metrics
+kubeEtcd:
+  enabled: true
+
+# Disable Controller metrics
+kubeControllerManager:
+  enabled: true
+
+# Disable Scheduler metrics
+kubeScheduler:
+  enabled: true
