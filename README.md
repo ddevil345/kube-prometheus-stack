@@ -1,7 +1,7 @@
 # Install kube-prometheus-stack with Helm pv,pvc on NFS
 - Cteate ns monitoring
 
-user@k8s:~$ kubectl create namepsace monitoring
+user@k8s:~$ kubectl create namespace monitoring
 
 - Create pv and pvc
 
