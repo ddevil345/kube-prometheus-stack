@@ -1,12 +1,12 @@
-  ## Storage is the definition of how storage will be used by the Alertmanager instances.
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
-    ##
-    storage: {}
-     volumeClaimTemplate:
-       spec:
-         storageClassName: nfs-client
-         accessModes: ["ReadWriteMany"]
-         resources:
-           requests:
-             storage: 5Gi
-       selector: {}
+## Storage is the definition of how storage will be used by the Alertmanager instances.
+## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
+storage: {}
+  volumeClaimTemplate:
+    spec:
+    storageClassName: nfs-client
+    accessModes: ["ReadWriteMany"]
+    resources:
+      requests:
+        storage: 5Gi
+    selector: {}
+    
